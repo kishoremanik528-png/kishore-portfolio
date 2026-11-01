@@ -12,6 +12,9 @@ const emailJsConfig = {
 const isEmailJsConfigured = Object.values(emailJsConfig).every(
   (value) => Boolean(value) && !/^your_.*$/i.test(value),
 );
+if (isEmailJsConfigured) {
+  emailjs.init({ publicKey: emailJsConfig.publicKey });
+}
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const initialValues = { name: "", email: "", subject: "", message: "" };
 const fieldLabels = {
@@ -134,15 +137,19 @@ export default function Contact() {
     setIsSubmitting(true);
     setFeedback({ type: "", message: "" });
     try {
+      const templateParams = {
+        name: values.name.trim(),
+        email: values.email.trim(),
+        subject: values.subject.trim(),
+        message: values.message.trim(),
+        from_name: values.name.trim(),
+        from_email: values.email.trim(),
+        reply_to: values.email.trim(),
+      };
       const response = await emailjs.send(
         emailJsConfig.serviceId,
         emailJsConfig.templateId,
-        {
-          name: values.name.trim(),
-          email: values.email.trim(),
-          subject: values.subject.trim(),
-          message: values.message.trim(),
-        },
+        templateParams,
         { publicKey: emailJsConfig.publicKey },
       );
       if (response.status !== 200) {
@@ -154,10 +161,30 @@ export default function Contact() {
       });
       setValues(initialValues);
       setErrors({});
-    } catch {
+    } catch (error) {
+      const status = Number(error?.status);
+      const providerMessage = String(error?.text || error?.message || "").trim();
+      console.error("EmailJS submission failed.", {
+        status: status || undefined,
+        code: providerMessage ? "Provider returned an error." : "No provider error was returned.",
+      });
+
+      let message =
+        "EmailJS could not send your message. Please try again or contact me directly by email.";
+      if (!status && providerMessage.toLowerCase().includes("public key")) {
+        message = "EmailJS rejected the configured public key. Check the Vercel environment variables and redeploy.";
+      } else if (status === 400) {
+        message = "EmailJS rejected the request. Check the service, template, and template variable configuration.";
+      } else if (status === 401 || status === 403) {
+        message = "EmailJS authentication failed. Verify the public key and allowed domains in EmailJS.";
+      } else if (status === 404) {
+        message = "The configured EmailJS service or template was not found. Verify their IDs in Vercel.";
+      } else if (status === 412) {
+        message = "The EmailJS template configuration failed. Verify its recipient and required template variables.";
+      }
       setFeedback({
         type: "error",
-        message: "Your message could not be sent. Please try again or contact me directly by email.",
+        message,
       });
     } finally {
       submissionLock.current = false;
