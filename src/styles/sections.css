@@ -1156,3 +1156,113 @@
     will-change: auto;
   }
 }
+
+/* Consistent section density and dark-theme contrast across content surfaces. */
+@media (max-width: 700px) {
+  .section {
+    padding: 42px 0;
+  }
+
+  .section-heading {
+    margin-bottom: 22px;
+  }
+
+  .about-grid,
+  .contact-grid {
+    gap: 24px;
+  }
+}
+
+.dark .section,
+.dark .journey-section,
+.dark .contact-section {
+  background: transparent;
+}
+
+.dark .profile-card,
+.dark .skill-category,
+.dark .project-card,
+.dark .timeline-card,
+.dark .contact-card,
+.dark .contact-form-wrap,
+.dark .journey-note,
+.dark .project-preview {
+  border-color: var(--line);
+  background: var(--surface);
+  color: var(--navy);
+}
+
+.dark .profile-card small,
+.dark .skill-category small,
+.dark .project-body > p,
+.dark .timeline-card p,
+.dark .contact-card small,
+.dark .project-tech,
+.dark .project-link,
+.dark .journey-note,
+.dark .journey-note span,
+.dark .field-note,
+.dark .footer-brand,
+.dark .site-footer {
+  color: var(--muted);
+}
+
+.dark .profile-card h3,
+.dark .skill-category h3,
+.dark .project-body h3,
+.dark .timeline-card h3,
+.dark .contact-card strong,
+.dark .contact-card h3,
+.dark .project-company,
+.dark .preview-title,
+.dark .preview-subtitle {
+  color: var(--navy);
+}
+
+.dark .project-tag,
+.dark .skill-tag,
+.dark .preview-tech span,
+.dark .preview-meta {
+  border-color: var(--line);
+  background: var(--blue-light);
+  color: #cbd8ef;
+}
+
+.dark .contact-card,
+.dark .contact-card a,
+.dark .project-link,
+.dark .timeline-card a {
+  color: var(--navy);
+}
+
+.dark .contact-card:hover,
+.dark .project-card:hover {
+  border-color: var(--blue);
+}
+
+.dark .contact-form input,
+.dark .contact-form textarea {
+  border-color: var(--line);
+  background: #0c1728;
+  color: var(--navy);
+}
+
+.dark .contact-form input::placeholder,
+.dark .contact-form textarea::placeholder {
+  color: #8594ad;
+}
+
+.dark .contact-form input:focus,
+.dark .contact-form textarea:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(124, 165, 255, 0.16);
+}
+
+.dark .form-feedback.success {
+  color: #72d3ac;
+}
+
+.dark .form-feedback.error,
+.dark .field-error {
+  color: #ff9b9b;
+}

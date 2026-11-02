@@ -44,6 +44,9 @@ export default function Hero() {
           <span className="status-dot" />
           B.Tech AI &amp; Data Science student
         </div>
+        <div className="mobile-hero-photo">
+          <PortraitShowcase />
+        </div>
         <p className="hello">Hello, I’m</p>
         <h1>
           {firstName} {lastName && <span>{lastName}</span>}

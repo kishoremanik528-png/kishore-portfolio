@@ -9,7 +9,7 @@ import {
 import { portfolio } from "../config/portfolio.js";
 
 const portrait = {
-  src: "/images/km-2.jpeg",
+  src: "/kishore-portrait.jpeg",
   alt: `${portfolio.fullName} wearing a navy suit and white shirt`,
 };
 
