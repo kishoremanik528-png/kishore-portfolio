@@ -1,6 +1,6 @@
 .hero {
   width: min(1240px, calc(100% - 64px));
-  min-height: min(720px, calc(100vh - 82px));
+  min-height: min(680px, calc(100vh - 82px));
   margin: auto;
   display: grid;
   grid-template-columns: 0.96fr 1.04fr;
@@ -712,40 +712,29 @@
     min-height: auto;
     grid-template-columns: 1fr;
     gap: 16px;
-    padding-bottom: 42px;
-    overflow: visible;
+    padding-bottom: 0;
+    overflow: hidden;
+    border-radius: 0 0 34px 34px;
     background:
       radial-gradient(circle at 78% 26%, rgba(51, 119, 255, 0.12), transparent 34%),
       linear-gradient(180deg, rgba(248, 251, 255, 0.72), rgba(236, 244, 255, 0.92));
   }
 
   .hero::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    bottom: -1px;
-    z-index: -1;
-    width: 140vw;
-    height: 105px;
-    transform: translateX(-50%);
-    background:
-      radial-gradient(80% 130% at 18% 100%, rgba(78, 142, 255, 0.38), transparent 58%),
-      radial-gradient(65% 120% at 72% 100%, rgba(32, 94, 223, 0.26), transparent 62%);
-    clip-path: ellipse(58% 64% at 50% 100%);
-    pointer-events: none;
+    display: none;
   }
 
   .hero-copy {
     width: 100%;
-    padding: 34px 0 8px;
+    padding: 20px 0 8px;
     text-align: center;
   }
 
   .mobile-hero-photo {
     position: relative;
-    width: 210px;
-    height: 210px;
-    margin: 16px auto 2px;
+    width: 244px;
+    height: 244px;
+    margin: 0 auto 28px;
   }
 
   .mobile-hero-photo .portrait-showcase {
@@ -765,8 +754,9 @@
 
   .mobile-hero-photo .portrait-card {
     width: 100%;
-    height: 210px;
-    border-radius: 24px;
+    height: 244px;
+    border-radius: 18px;
+    box-shadow: 0 18px 38px rgba(24, 58, 112, 0.18);
   }
 
   .mobile-hero-photo .portrait-image {
@@ -782,7 +772,7 @@
   }
 
   .hello {
-    margin-top: 24px;
+    margin-top: -6px;
   }
 
   .hero h1 {
@@ -835,7 +825,7 @@
 
   .social-links {
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 18px;
   }
 
   .social-links a {
@@ -848,7 +838,12 @@
   }
 
   .scroll-hint {
-    display: none;
+    display: inline-flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 16px;
+    margin-bottom: 0;
+    font-size: 10px;
   }
 
   .hero-visual {
@@ -976,16 +971,16 @@
   }
 
   .hero-copy {
-    padding-top: 24px;
+    padding-top: 16px;
   }
 
   .mobile-hero-photo {
-    width: 190px;
-    height: 190px;
+    width: 244px;
+    height: 244px;
   }
 
   .mobile-hero-photo .portrait-card {
-    height: 190px;
+    height: 244px;
   }
 
   .hero h1 {
@@ -1021,6 +1016,21 @@
   }
 }
 
+@media (max-width: 430px) and (min-width: 411px) {
+  .mobile-hero-photo,
+  .mobile-hero-photo .portrait-card {
+    width: 255px;
+  }
+
+  .mobile-hero-photo {
+    height: 255px;
+  }
+
+  .mobile-hero-photo .portrait-card {
+    height: 255px;
+  }
+}
+
 @media (max-width: 340px) {
   .hero-cta {
     flex-direction: column;
@@ -1040,7 +1050,7 @@
   }
 
   .hero {
-    padding-bottom: 30px;
+    padding-bottom: 0;
   }
 
   .hello {
@@ -1048,8 +1058,8 @@
   }
 
   .hero-copy {
-    padding-top: 24px;
-    padding-bottom: 0;
+    padding-top: 18px;
+    padding-bottom: 14px;
   }
 
   .dark .hero {

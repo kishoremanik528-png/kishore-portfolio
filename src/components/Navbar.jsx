@@ -35,6 +35,23 @@ export default function Navbar({ isDark, onToggleTheme }) {
     setMenuOpen(false);
   }
 
+  async function handleResumeDownload(event) {
+    event.preventDefault();
+
+    const response = await fetch(portfolio.resumePdfPath);
+    if (!response.ok) return;
+
+    const file = await response.blob();
+    const downloadUrl = URL.createObjectURL(file);
+    const link = document.createElement("a");
+    link.href = downloadUrl;
+    link.download = "Kishore_Manik_Resume.pdf";
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    window.setTimeout(() => URL.revokeObjectURL(downloadUrl), 1000);
+  }
+
   return (
     <header className="navbar">
       <a className="brand" href="#home">
@@ -68,6 +85,7 @@ export default function Navbar({ isDark, onToggleTheme }) {
             href={portfolio.resumePdfPath}
             download="Kishore_Manik_Resume.pdf"
             aria-label="Download Resume"
+            onClick={handleResumeDownload}
           >
             <Download size={15} />
             Download Resume

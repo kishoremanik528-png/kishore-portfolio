@@ -40,12 +40,12 @@ export default function Hero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.65 }}
       >
+        <div className="mobile-hero-photo">
+          <PortraitShowcase />
+        </div>
         <div className="eyebrow">
           <span className="status-dot" />
           B.Tech AI &amp; Data Science student
-        </div>
-        <div className="mobile-hero-photo">
-          <PortraitShowcase />
         </div>
         <p className="hello">Hello, I’m</p>
         <h1>

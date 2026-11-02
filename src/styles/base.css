@@ -24,13 +24,14 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 90px;
+  scroll-padding-top: 82px;
 }
 
 body {
   margin: 0;
   min-width: 320px;
   background: var(--page);
+  overflow-x: clip;
 }
 
 a {
@@ -51,7 +52,6 @@ a {
 
 .site {
   min-height: 100vh;
-  overflow: hidden;
   background: var(--page);
   color: var(--navy);
   transition: background 0.25s, color 0.25s;
@@ -86,5 +86,11 @@ a {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+@media (max-width: 760px) {
+  html {
+    scroll-padding-top: 70px;
   }
 }

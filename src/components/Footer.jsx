@@ -12,7 +12,7 @@ export default function Footer() {
       <a className="footer-brand" href="#home">
         {initials.slice(0, -1)}<span>{initials.slice(-1)}</span>
       </a>
-      <p>Designed with care. Built one step at a time.</p>
+      <p></p>
       <a className="back-to-top" href="#home">Back to top ↑</a>
     </footer>
   );
